@@ -10,6 +10,7 @@ class WeightsController < ApplicationController
 	end
 	
 	def new
+		@weights = Weight.all
 		@weight = Weight.new
 	end
 
@@ -19,5 +20,6 @@ class WeightsController < ApplicationController
 		@weight= Weight.new(@weight_info)
 		@weight.user_id = @user.id
         @user.current_weight = @weight
+        @weight.save
 	end
 end
