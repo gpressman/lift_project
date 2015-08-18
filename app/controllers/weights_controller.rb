@@ -12,6 +12,7 @@ class WeightsController < ApplicationController
 	end
 	
 	def new
+		@user = current_user
 		@weights = Weight.all
 		@weight = Weight.new
 	end
@@ -23,9 +24,9 @@ class WeightsController < ApplicationController
 		@weight.user_id = @user.id
         @user.current_weight = @weight
         if @weight.save
-          redirect_to(weight_path(@weight.id))
+          redirect_to(user_weight_path(@user.id, @weight.id))
         else
-           render 'new_weight'
+           render 'new_user_weight'
         end
 	end
 end
