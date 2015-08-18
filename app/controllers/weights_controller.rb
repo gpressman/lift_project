@@ -1,6 +1,8 @@
 class WeightsController < ApplicationController
 
 	def index
+		@user = current_user
+		@user_weights = @user.weights.all
 		@weights = Weight.all
 	end
 
