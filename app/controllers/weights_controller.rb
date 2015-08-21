@@ -1,18 +1,18 @@
 class WeightsController < ApplicationController
 
 	def index
-		@user = current_user
+		@user = User.find(params[:id])
 		@user_weights = @user.weights.all
 		@weights = Weight.all
 	end
 
 	def show
-		@user = current_user
+		@user = User.find(params[:id])
 		@weight = @user.weights.find(params[:id])
 	end
 
 	def user_index
-		@user = current_user
+		@user = User.find(params[:id])
 		@weights = @user.weight.all
 	end
 	

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user/show'
+
   devise_for :users, :path => 'accounts'
     resources :users, only: [:show] do 
       resources :weights, only: [:create, :show, :new, :index]
