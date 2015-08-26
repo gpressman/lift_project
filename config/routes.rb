@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :exercises
+
   get 'user/show'
 
   devise_for :users, :path => 'accounts'
