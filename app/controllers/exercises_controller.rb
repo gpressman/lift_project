@@ -14,6 +14,7 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/new
   def new
+    @user = Current_user
     @exercise = Exercise.new
   end
 
