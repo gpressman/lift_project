@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/new
   def new
-    @user = Current_user
+    @user = current_user
     @exercise = Exercise.new
   end
 
@@ -25,8 +25,8 @@ class ExercisesController < ApplicationController
   # POST /exercises
   # POST /exercises.json
   def create
+    @user = current_user
     @exercise = Exercise.new(exercise_params)
-      if 
 
     respond_to do |format|
       if @exercise.save

@@ -25,7 +25,7 @@ class WeightsController < ApplicationController
 	def create
 		@user = current_user
 		@weight_info = params.permit(:weight)
-		@weight= Weight.new(weight_params)
+		@weight= @user.weight.build(weight_params)
 		@weight.user_id = @user.id
         @user.current_weight = @weight
         if @weight.save
@@ -34,6 +34,8 @@ class WeightsController < ApplicationController
            render 'new_user_weight'
         end
 	end
+
+	private
 
 	def weight_params
 		params.require(:weight).permit(:weight)
