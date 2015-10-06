@@ -1,7 +1,7 @@
 class WeightsController < ApplicationController
 
 	def index
-		@user = User.find(params[:id])
+		@user = User.find(params[:user_id])
 		@user_weights = @user.weights.all
 		@weights = Weight.all
 	end
@@ -13,7 +13,7 @@ class WeightsController < ApplicationController
 
 	def user_index
 		@user = User.find(params[:id])
-		@weights = @user.weight.all
+		@weights = @user.weights.all
 	end
 	
 	def new
@@ -23,13 +23,11 @@ class WeightsController < ApplicationController
 	end
 
 	def create
-		@user = current_user
-		@weight_info = params.permit(:weight)
-		@weight= @user.weight.build(weight_params)
-		@weight.user_id = @user.id
+		@user = User.find(params[:user_id])
+		@weight= @user.weights.new(weight_params)
         @user.current_weight = @weight
         if @weight.save
-          redirect_to(user_weight_path(@user.id, @weight.id))
+          redirect_to(user_weights_path(@user.id))
         else
            render 'new_user_weight'
         end
@@ -41,3 +39,7 @@ class WeightsController < ApplicationController
 		params.require(:weight).permit(:weight)
 	end
 end
+
+
+
+

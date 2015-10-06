@@ -1,1 +1,3 @@
-<%= @user_weights %>
+<% @user_weights.each do |weight| %>
+  <%= weight.weight %>
+  <% end %>
