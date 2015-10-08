@@ -1,3 +1,6 @@
 <% @user_weights.each do |weight| %>
   <%= weight.weight %>
+  
   <% end %>
+
+<%= line_chart @user_weights.group_by_month(:created_at).count %>
