@@ -28,7 +28,9 @@ class ExercisesController < ApplicationController
     @user = current_user
     @exercises = Exercise.all
     @exercise = Exercise.new(exercise_params)
+    unless @user.exercises.exercise.present?
     @user.exercises << @exercise
+    end
     respond_to do |format|
       if @exercise.save
         format.html { redirect_to @exercise, notice: 'Exercise was successfully created.' }

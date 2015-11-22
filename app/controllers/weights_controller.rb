@@ -25,7 +25,8 @@ class WeightsController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])
 		@weight= @user.weights.new(weight_params)
-        @user.current_weight = @weight
+        @user.current_weight = @weight.weight
+        @user.save
         if @weight.save
           redirect_to(user_weights_path(@user.id))
         else
