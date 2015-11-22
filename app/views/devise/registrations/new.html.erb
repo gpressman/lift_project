@@ -4,6 +4,16 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+  <%=  f.label :weight %>
+  <%=  f.number_field( :current_weight, in: 1.0..1000.0, step: 0.1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height %>
+    <%= f.number_field(:current_height, in: 0.0..108.0, step: 0.5) %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>

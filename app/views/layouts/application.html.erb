@@ -10,6 +10,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<% if current_user.present? %>
+<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+<% else %>
+
+
+<p><%= link_to("sign in", new_user_session_path) %></p>
+<p><%= link_to("create account", new_user_registration_path) %></p>
+
+<% end %>
 
 <%= yield %>
 
