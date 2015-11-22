@@ -27,6 +27,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'chartkick', '~> 1.4.1'
 
 gem 'groupdate'
+
+
+#to make charts and graphs
+gem 'morrisjs-rails'
+gem 'raphael-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
