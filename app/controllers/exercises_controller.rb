@@ -26,11 +26,11 @@ class ExercisesController < ApplicationController
   # POST /exercises.json
   def create
     @user = current_user
+    @exercises = Exercise.all
     @exercise = Exercise.new(exercise_params)
-
+    @user.exercises << @exercise
     respond_to do |format|
       if @exercise.save
-
         format.html { redirect_to @exercise, notice: 'Exercise was successfully created.' }
         format.json { render :show, status: :created, location: @exercise }
       else

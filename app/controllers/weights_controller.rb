@@ -13,7 +13,7 @@ class WeightsController < ApplicationController
 
 	def user_index
 		@user = User.find(params[:id])
-		@weights = @user.weights.all
+		
 	end
 	
 	def new
