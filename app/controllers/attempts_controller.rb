@@ -1,4 +1,4 @@
-class AttemptController < ApplicationController
+class AttemptsController < ApplicationController
   def index
   	@exercise = Exercise.find(params[:id])
   	@attempts = @exercise.attempts.all
