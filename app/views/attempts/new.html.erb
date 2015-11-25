@@ -1,0 +1,22 @@
+<%= form_for ([:exercise, @attempt])  do |f| %>
+  <% if @attempt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attempt.errors.count, "error") %> prohibited this attempt from being saved:</h2>
+
+      <ul>
+      <% @attempt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.text_field :score %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Record attempt" %>
+  </div>
+<% end %>
