@@ -15,7 +15,7 @@
     <% @exercises.each do |exercise| %>
       <tr>
         <td><%= exercise.name %></td>
-        <td><%= link_to 'Show', [@exercise, @user] %></td>
+        <td><%= link_to 'Show', [@user, exercise] %></td>
         <td><%= link_to 'Destroy', [@user, exercise], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
