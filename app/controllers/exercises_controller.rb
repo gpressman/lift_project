@@ -13,6 +13,7 @@ class ExercisesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @exercise = @user.exercises.find(params[:id])
+    @attempts = @exercise.attempts.all
   end
 
   # GET /exercises/new

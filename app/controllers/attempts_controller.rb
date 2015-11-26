@@ -1,19 +1,18 @@
 class AttemptsController < ApplicationController
   def index
-    @user = User.find(params[:id])
-  	@exercise = Exercise.find(params[:id])
+    @user = User.find(params[:user_id])
   	@attempts = @exercise.attempts.all
   end
 
   def new
-  	@exercise = Exercise.find(params[:exercise_id])
-  	@attempt = @exercise.attempts.new	
+  	@user = User.find(params[:user_id])
+    @exercises = @user.exercises.all
+  	@attempt = @user.attempts.new	
   end
 
   def create
-  	@exercise = Exercise.find(params[:exercise_id])
-  	@attempt = @exercise.attempts.new(attempt_params)
-  	@attempt.user_id = @exercise.user_id
+  	@user = User.find(params[:user_id])
+  	@attempt = @user.attempts.new(attempt_params)
   	  if @attempt.save
   	  	redirect_to @exercise
   	  else
