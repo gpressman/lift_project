@@ -4,7 +4,8 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.all
+    @user = User.find(params[:user_id])
+    @exercises = @user.exercises.all
   end
 
   # GET /exercises/1
@@ -14,8 +15,8 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/new
   def new
-    @user = current_user
-    @exercise = Exercise.new
+    @user = User.find(params[:user_id])
+    @exercise = @user.exercises.new
   end
 
   # GET /exercises/1/edit
@@ -25,15 +26,11 @@ class ExercisesController < ApplicationController
   # POST /exercises
   # POST /exercises.json
   def create
-    @user = current_user
-    @exercises = Exercise.all
-    @exercise = Exercise.new(exercise_params)
-    unless @user.exercises.exercise.present?
-    @user.exercises << @exercise
-    end
+    @user = User.find(params[:user_id])
+    @exercise = @user.exercises.new(exercise_params)
     respond_to do |format|
       if @exercise.save
-        format.html { redirect_to @exercise, notice: 'Exercise was successfully created.' }
+        format.html { redirect_to user_exercises_path, notice: 'Exercise was successfully created.' }
         format.json { render :show, status: :created, location: @exercise }
       else
         format.html { render :new }

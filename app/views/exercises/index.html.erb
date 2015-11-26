@@ -15,8 +15,8 @@
     <% @exercises.each do |exercise| %>
       <tr>
         <td><%= exercise.name %></td>
-        <td><%= link_to 'Show', exercise %></td>
-        <td><%= link_to 'Destroy', exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@exercise, @user] %></td>
+        <td><%= link_to 'Destroy', [@user, exercise], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Exercise', new_exercise_path %>
+<%= link_to 'New Exercise', new_user_exercise_path %>
