@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   devise_for :users, :path => 'accounts'
     resources :users, only: [:show, :index] do 
       resources :weights, only: [:create, :show, :new, :index]
-    end
-    resources :exercises, only: [:create, :show, :new, :index, :destroy] do
+      resources :exercises, only: [:create, :show, :new, :index, :destroy]
       resources :attempts, only: [:create, :new, :index]
     end
+     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
