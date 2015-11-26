@@ -13,8 +13,9 @@ class AttemptsController < ApplicationController
   def create
   	@user = User.find(params[:user_id])
   	@attempt = @user.attempts.new(attempt_params)
+
   	  if @attempt.save
-  	  	redirect_to @exercise
+  	  	redirect_to user_exercise_path(@user, @attempt.exercise_id)
   	  else
   	  	render 'new_exercise_attempt'
   	  end
@@ -23,6 +24,6 @@ class AttemptsController < ApplicationController
   private
 
   def attempt_params
-  	params.require(:attempt).permit(:score)
+  	params.require(:attempt).permit(:score, :exercise_id)
   end
 end

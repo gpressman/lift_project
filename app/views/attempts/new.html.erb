@@ -19,7 +19,7 @@
     <%= f.label :exercise %>
     <%= f.select (:exercise_id) do %>
       <% @exercises.each do |exercise| %>
-      <%= content_tag(:option, exercise.name) %>
+      <%= content_tag(:option, exercise.name, value: exercise.id) %>
       <% end %>
     <% end %>
   </div>
