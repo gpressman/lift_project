@@ -44,7 +44,7 @@ weights_over_time = []
 
 weights.each do |weight|
 weights_over_time.push({
-    :label => weight.created_at.strftime("%b %d, %Y"),
+    :label => weight.created_at.strftime("%m-%-d-%y"),
     :value => weight.weight,
 })
 end
