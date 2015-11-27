@@ -17,7 +17,7 @@ class AttemptsController < ApplicationController
   	  if @attempt.save
   	  	redirect_to user_exercise_path(@user, @attempt.exercise_id)
   	  else
-  	  	render 'new_exercise_attempt'
+  	  	render 'new_user_attempt'
   	  end
   end
 

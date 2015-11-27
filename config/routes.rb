@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   
 
   get 'user/show'
+  get 'example' => 'examples#fc_json'
+  get '/users/:user_id/example' => 'weights#fc_json'
+
 
   devise_for :users, :path => 'accounts'
     resources :users, only: [:show, :index] do 
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
       resources :exercises, only: [:create, :show, :new, :index, :destroy]
       resources :attempts, only: [:create, :new, :index]
     end
+
+
      
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

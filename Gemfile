@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem to add charts and graphs
 gem 'chartkick', '~> 1.4.1'
 
+gem 'fusioncharts-rails'
+
 gem 'groupdate'
 
 
