@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :weights
-  has_many :exercises
+  has_and_belongs_to_many :exercises
   has_many :attempts
   
 

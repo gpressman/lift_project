@@ -1,3 +1,2 @@
 module WeightsHelper
-                 
-end
+end	

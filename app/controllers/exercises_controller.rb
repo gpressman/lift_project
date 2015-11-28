@@ -19,7 +19,7 @@ class ExercisesController < ApplicationController
   # GET /exercises/new
   def new
     @user = User.find(params[:user_id])
-    @exercise = @user.exercises.new
+    @exercise = Exercise.new
   end
 
   # GET /exercises/1/edit
@@ -30,9 +30,12 @@ class ExercisesController < ApplicationController
   # POST /exercises.json
   def create
     @user = User.find(params[:user_id])
-    @exercise = @user.exercises.new(exercise_params)
+    @exercise = Exercise.new(exercise_params)
+    unless @user.exercises.include?(@exercise)
+    @user.exercises <<  @exercise
+    end
     respond_to do |format|
-      if @exercise.save
+      if @user.save
         format.html { redirect_to user_exercises_path, notice: 'Exercise was successfully created.' }
         format.json { render :show, status: :created, location: @exercise }
       else
