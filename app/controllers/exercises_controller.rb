@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
   def create
     @user = current_user
     @exercise = Exercise.new(exercise_params)
-    unless @user.exercises.include?(@exercise)
+    unless @user.exercises.where(name: @exercise.name).exists?
     @user.exercises <<  @exercise
     end
     respond_to do |format|
