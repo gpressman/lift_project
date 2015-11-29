@@ -5,13 +5,13 @@ class AttemptsController < ApplicationController
   end
 
   def new
-  	@user = User.find(params[:user_id])
+  	@user = current_user
     @exercises = @user.exercises.all
   	@attempt = @user.attempts.new	
   end
 
   def create
-  	@user = User.find(params[:user_id])
+  	@user = current_user
   	@attempt = @user.attempts.new(attempt_params)
 
   	  if @attempt.save

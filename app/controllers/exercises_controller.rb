@@ -18,7 +18,7 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/new
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @exercise = Exercise.new
   end
 
@@ -29,7 +29,7 @@ class ExercisesController < ApplicationController
   # POST /exercises
   # POST /exercises.json
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @exercise = Exercise.new(exercise_params)
     unless @user.exercises.include?(@exercise)
     @user.exercises <<  @exercise

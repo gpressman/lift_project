@@ -1,4 +1,5 @@
 class WeightsController < ApplicationController
+	before_action :authenticate_user! 
 
 	def index
 		@user = User.find(params[:user_id])
@@ -7,14 +8,9 @@ class WeightsController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
-		@weight = @user.weights.find(params[:id])
-	end
-
-	def user_index
-		@user = User.find(params[:id])
 		
 	end
+
 	
 	def new
 		@user = current_user
@@ -23,7 +19,7 @@ class WeightsController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:user_id])
+		@user = current_user
 		@weight= @user.weights.new(weight_params)
         @user.current_weight = @weight.weight
         @user.save

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :path => 'accounts'
     resources :users, only: [:show, :index] do 
-      resources :weights, only: [:create, :show, :new, :index]
+      resources :weights, only: [:create, :new, :index]
       resources :exercises, only: [:create, :show, :new, :index, :destroy]
       resources :attempts, only: [:create, :new, :index]
     end
