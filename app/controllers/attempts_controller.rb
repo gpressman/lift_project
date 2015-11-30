@@ -1,7 +1,7 @@
 class AttemptsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-  	@attempts = @exercise.attempts.all
+  	@attempts = @user.attempts.all
   end
 
   def new
