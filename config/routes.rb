@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
 
+  get 'charts/show'
+
+  get 'charts/index'
+
+  get 'charts/new'
+
+  get 'charts/create'
+
   get 'user/show'
   get 'example' => 'examples#fc_json'
   get '/users/:user_id/example' => 'weights#fc_json'
