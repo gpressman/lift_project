@@ -4,6 +4,8 @@ class ChartsController < ApplicationController
   end
 
   def show
+  	@user = current_user
+  	@chart = @user.charts.find(params[:id])
   end
 
   def new
@@ -16,7 +18,7 @@ class ChartsController < ApplicationController
   	@user = current_user
   	@chart = @user.charts.new(chart_params)
   	  if @chart.save
-  	  	redirect_to 'show'
+  	  	redirect_to user_chart_path(@user, @chart)
   	  else
   	  	render 'new'
   	  end
@@ -25,6 +27,6 @@ class ChartsController < ApplicationController
   private
 
   def chart_params
-  	params.require(:chart).include(:y_coordinate_exercise_id, :x_coordinate_exercise_id, :name)
+  	params.require(:chart).permit(:y_coordinate_exercise_id, :x_coordinate_exercise_id, :name)
   end
 end
