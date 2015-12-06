@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   
 
-  get 'charts/show'
-
-  get 'charts/index'
-
-  get 'charts/new'
-
-  get 'charts/create'
+  
 
   get 'user/show'
   get 'example' => 'examples#fc_json'
@@ -19,6 +13,7 @@ Rails.application.routes.draw do
       resources :weights, only: [:create, :new, :index]
       resources :exercises, only: [:create, :show, :new, :index, :destroy]
       resources :attempts, only: [:create, :new, :index]
+      resources :charts, only: [:new, :create, :show]
     end
 
 

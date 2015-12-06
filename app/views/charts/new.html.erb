@@ -1,2 +1,21 @@
 <h1>Charts#new</h1>
 <p>Find me in app/views/charts/new.html.erb</p>
+
+
+<%= form_for ([:user, @chart]) do |chart| %>
+  <div class="field">
+  	<%= chart.label :name %><br />
+  	<%= chart.text_field :name %>
+  </div>
+  <div class="field">
+  	<%= chart.label :x_exercise %>
+  	<%= chart.select :x_coordinate_exercise_id do %>
+  	  <% @exercises.each do |exercise| %>
+  	  <%= content_tag(:option, exercise.name, value: exercise.id) %>
+  	  <% end %>
+  	<% end %>
+  </div>
+  <div class="actions">
+  	<%= chart.submit "Make Chart" %>
+  </div>
+<% end %>
