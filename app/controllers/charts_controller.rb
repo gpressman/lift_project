@@ -4,23 +4,32 @@ class ChartsController < ApplicationController
   end
 
   def show
-  	@chart = @user.charts.find(params[:id])
+  	x_exercise_attempts = []
+  	y_exercise_attempts = []
     @user = User.find(params[:user_id])
+    @graph = @user.charts.find(params[:id])
     @attempts = @user.attempts.all
-    @x_exercise_attempts = @attempts.find_by(exercise_id: x_coordinate_exercise_id)
-    @y_exercise_attempts = @attempts.find_by(exercise_id: y_coordinate_exercise_id)
-    x_exercise = @x_exercise_attempts.order(score: :acd).first
-    y_exercise = @y_exercise_attempts.order(score: :acd).first	
-
+    x_exercise_attempts << @attempts.find_by(exercise_id: @graph.x_coordinate_exercise_id)
+    y_exercise_attempts << @y_exercise_attempts = @attempts.find_by(exercise_id: @graph.y_coordinate_exercise_id)
+    x_exercise_attempts.sort_by! do |attempt|
+    	attempt[:score]
+    end
+    y_exercise_attempts.sort_by! do |attempt|
+    	attempt[:score]
+    end
+    x_exercise = x_exercise_attempts.first
+    y_exercise = y_exercise_attempts.first
 movements = []
 
 
 
 movements.push({
-    :label => x_exercise.name,
+    :label => x_exercise.exercise.name,
     :value => x_exercise.score,
+    :label => y_exercise.exercise.name,
+    :value => y_exercise.score,
 })
-end
+
 @chart = Fusioncharts::Chart.new({
     type: 'column2d',
     renderAt: 'chart-container',
@@ -29,7 +38,7 @@ end
     dataFormat: 'json',
     dataSource: {
         "chart": {
-            "caption": "Comparison of #{x_exercise.name} and #{y_exercise.name}",
+            "caption": "Comparison of #{x_exercise.exercise.name} and #{y_exercise.exercise.name}",
                 
             "xAxisName": "Date",
             "yAxisName": "Weight",
@@ -59,7 +68,7 @@ end
         }
     })
 end 
-  end
+  
 
   def new
   	@user = current_user
