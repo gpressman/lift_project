@@ -19,16 +19,11 @@ class ChartsController < ApplicationController
     end
     x_exercise = x_exercise_attempts.first
     y_exercise = y_exercise_attempts.first
-movements = []
 
 
 
-movements.push({
-    :label => x_exercise.exercise.name,
-    :value => x_exercise.score,
-    :label => y_exercise.exercise.name,
-    :value => y_exercise.score,
-})
+
+
 
 @chart = Fusioncharts::Chart.new({
     type: 'column2d',
@@ -64,7 +59,16 @@ movements.push({
             "toolTipBorderRadius": "2",
             "toolTipPadding": "5"
             },
-            :data => movements
+            "data": [
+            	{
+    				:label => x_exercise.exercise.name,
+   				    :value => x_exercise.score,
+                },
+                {
+                    :label => y_exercise.exercise.name,
+                    :value => y_exercise.score,
+                }
+            ]
         }
     })
 end 
