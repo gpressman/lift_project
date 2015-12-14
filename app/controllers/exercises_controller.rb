@@ -30,8 +30,10 @@ class ExercisesController < ApplicationController
   # POST /exercises.json
   def create
     @user = current_user
-    @exercise = Exercise.first_or_create(exercise_params)
+    @exercise = Exercise.new(exercise_params)
+    @exercise = Exercise.where(name: @exercise.name).first_or_create(exercise_params)
     unless @user.exercises.where(name: @exercise.name).exists?
+      @exercise.save
       @user.exercises <<  @exercise
     end
     respond_to do |format|
