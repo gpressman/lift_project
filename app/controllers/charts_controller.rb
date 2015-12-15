@@ -35,7 +35,7 @@ class ChartsController < ApplicationController
         "chart": {
             "caption": "Comparison of #{x_exercise.exercise.name} and #{y_exercise.exercise.name}",
                 
-            "xAxisName": "Date",
+            "xAxisName": "Movement",
             "yAxisName": "Weight",
             "paletteColors": "#0075c2",
             "bgColor": "#ffffff",
