@@ -48,7 +48,7 @@ end
             "toolTipBorderRadius": "2",
             "toolTipPadding": "5"
             },
-            :data => weights_over_time
+            data: weights_over_time
         }
     })
 end 

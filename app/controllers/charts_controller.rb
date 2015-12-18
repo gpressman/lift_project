@@ -7,10 +7,10 @@ class ChartsController < ApplicationController
   	x_exercise_attempts = []
   	y_exercise_attempts = []
     @user = User.find(params[:user_id])
-    @graph = @user.charts.find(params[:id])
+    @chart = @user.charts.find(params[:id])
     @attempts = @user.attempts.all
-    x_exercise_attempts << @attempts.find_by(exercise_id: @graph.x_coordinate_exercise_id)
-    y_exercise_attempts << @y_exercise_attempts = @attempts.find_by(exercise_id: @graph.y_coordinate_exercise_id)
+    x_exercise_attempts << @attempts.find_by(exercise_id: @chart.x_coordinate_exercise_id)
+    y_exercise_attempts << @y_exercise_attempts = @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
     x_exercise_attempts.sort_by! do |attempt|
     	attempt[:score]
     end
@@ -20,12 +20,15 @@ class ChartsController < ApplicationController
     x_exercise = x_exercise_attempts.first
     y_exercise = y_exercise_attempts.first
 
+exercises = []
+exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
+  
 
 
 
 
 
-@chart = Fusioncharts::Chart.new({
+@column_chart = Fusioncharts::Chart.new({
     type: 'column2d',
     renderAt: 'chart-container',
     width: '400',
@@ -59,16 +62,16 @@ class ChartsController < ApplicationController
             "toolTipBorderRadius": "2",
             "toolTipPadding": "5"
             },
-            "data": [
-            	{
-    				:label => x_exercise.exercise.name,
-   				    :value => x_exercise.score,
-                },
-                {
-                    :label => y_exercise.exercise.name,
-                    :value => y_exercise.score,
-                }
-            ]
+            data:  exercises
+        #     	{
+    				# :label => x_exercise.exercise.name,
+   				 #    :value => x_exercise.score,
+        #         },
+        #         {
+        #             :label => y_exercise.exercise.name,
+        #             :value => y_exercise.score,
+        #         }
+            
         }
     })
 end 
