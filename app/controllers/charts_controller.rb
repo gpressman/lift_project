@@ -9,8 +9,12 @@ class ChartsController < ApplicationController
     @user = User.find(params[:user_id])
     @chart = @user.charts.find(params[:id])
     @attempts = @user.attempts.all
+    
+    #finds all attempts for the selected movements by the user
     x_exercise_attempts << @attempts.find_by(exercise_id: @chart.x_coordinate_exercise_id)
-    y_exercise_attempts << @y_exercise_attempts = @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
+    y_exercise_attempts << @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
+    
+    #finds the highest scored attempt
     x_exercise_attempts.sort_by! do |attempt|
     	attempt[:score]
     end
@@ -20,10 +24,32 @@ class ChartsController < ApplicationController
     x_exercise = x_exercise_attempts.first
     y_exercise = y_exercise_attempts.first
 
-exercises = []
-exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
-  
+   
 
+    #puts the best attempts exercise and score in an array.
+    exercises = []
+    exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
+  
+    #find all users who have both selected movements 
+    @users = User.exercises(exercise_id: @chart.x_coordinate_exercise_id).exists? && User.exercises(exercise_id: @chart.y_coordinate_exercise_id).exists?
+    
+  
+    global_exercises = []
+
+    @users.each do |user|
+      attempts = user.attempts.all
+      x_exercise_attempts << @attempts.find_by(exercise_id: @chart.x_coordinate_exercise_id)
+      y_exercise_attempts << @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
+      x_exercise_attempts.sort_by! do |attempt|
+      attempt[:score]
+      end
+      y_exercise_attempts.sort_by! do |attempt|
+      attempt[:score]
+      end
+      x_exercise = x_exercise_attempts.first
+      y_exercise = y_exercise_attempts.first
+      exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
+    end
 
 
 
@@ -189,126 +215,6 @@ exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label
                     "id": "Mob_1",
                     "y": "335",
                     "x": "156"
-                },
-                {
-                    "id": "Mob_2",
-                    "y": "339",
-                    "x": "927"
-                },
-                {
-                    "id": "Mob_3",
-                    "y": "328",
-                    "x": "847"
-                },
-                {
-                    "id": "Mob_4",
-                    "y": "1",
-                    "x": "177"
-                },
-                {
-                    "id": "Mob_5",
-                    "y": "246",
-                    "x": "175"
-                },
-                {
-                    "id": "Mob_6",
-                    "y": "368",
-                    "x": "441"
-                },
-                {
-                    "id": "Mob_7",
-                    "y": "146",
-                    "x": "200"
-                },
-                {
-                    "id": "Mob_8",
-                    "y": "347",
-                    "x": "482"
-                },
-                {
-                    "id": "Mob_9",
-                    "y": "1",
-                    "x": "463"
-                },
-                {
-                    "id": "Mob_10",
-                    "y": "63",
-                    "x": "440"
-                },
-                {
-                    "id": "Mob_11",
-                    "y": "77",
-                    "x": "211"
-                },
-                {
-                    "id": "Mob_12",
-                    "y": "108",
-                    "x": "824"
-                },
-                {
-                    "id": "Mob_13",
-                    "y": "44",
-                    "x": "850"
-                },
-                {
-                    "id": "Mob_14",
-                    "y": "77",
-                    "x": "712"
-                },
-                {
-                    "id": "Mob_15",
-                    "y": "15",
-                    "x": "199"
-                },
-                {
-                    "id": "Mob_16",
-                    "y": "333",
-                    "x": "836"
-                },
-                {
-                    "id": "Mob_17",
-                    "y": "31",
-                    "x": "482"
-                },
-                {
-                    "id": "Mob_18",
-                    "y": "90",
-                    "x": "604"
-                },
-                {
-                    "id": "Mob_19",
-                    "y": "294",
-                    "x": "716"
-                },
-                {
-                    "id": "Mob_20",
-                    "y": "241",
-                    "x": "870"
-                },
-                {
-                    "id": "Mob_21",
-                    "y": "258",
-                    "x": "421"
-                },
-                {
-                    "id": "Mob_22",
-                    "y": "186",
-                    "x": "456"
-                },
-                {
-                    "id": "Mob_23",
-                    "y": "255",
-                    "x": "327"
-                },
-                {
-                    "id": "Mob_24",
-                    "y": "203",
-                    "x": "995"
-                },
-                {
-                    "id": "Mob_25",
-                    "y": "35",
-                    "x": "792"
                 }
             ]
         }
