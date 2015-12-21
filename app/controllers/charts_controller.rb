@@ -54,21 +54,30 @@ class ChartsController < ApplicationController
     
   
     global_exercises = []
+    
 
-
+      
 
     @global_users.each do |user|
-      @attempts = user.attempts
-      
-       x_exercise_attempts.sort! do |attempt1, attempt2|
-      attempt2[:score] <=> attempt1[:score]
+      all_x = Array.new
+      all_y = Array.new
+      attempts = user.attempts.all
+       attempts.each do |attempt|
+      if attempt.exercise_id == @chart.x_coordinate_exercise_id
+        all_x << attempt
+      elsif attempt.exercise_id == @chart.y_coordinate_exercise_id
+        all_y<< attempt
+      end
     end
-    y_exercise_attempts.sort! do |attempt1, attempt2|
-      attempt2[:score] <=> attempt1[:score]
-    end
-      x_exercise = x_exercise_attempts.first
-      y_exercise = y_exercise_attempts.first
-      global_exercises << {x: x_exercise.score, y: y_exercise.score}
+      all_x.sort! do |attempt1, attempt2|
+        attempt2[:score] <=> attempt1[:score]
+      end
+      all_y.sort! do |attempt1, attempt2|
+        attempt2[:score] <=> attempt1[:score]
+      end
+      xercise = all_x.first
+      yercise = all_y.first
+       global_exercises << {x: xercise, y: yercise}
     end
 
 
