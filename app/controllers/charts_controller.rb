@@ -11,15 +11,23 @@ class ChartsController < ApplicationController
     @attempts = @user.attempts.all
     
     #finds all attempts for the selected movements by the user
-    x_exercise_attempts << @attempts.find_by(exercise_id: @chart.x_coordinate_exercise_id)
-    y_exercise_attempts << @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
+    @attempts.each do |attempt|
+      if attempt.exercise_id == @chart.x_coordinate_exercise_id
+        x_exercise_attempts << attempt
+      elsif attempt.exercise_id == @chart.y_coordinate_exercise_id
+        y_exercise_attempts << attempt
+      end
+    end
+        
+    # @x_exercise_attempts = @attempts.where(exercise_id: @chart.x_coordinate_exercise_id)
+    # @y_exercise_attempts = @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
     
     #finds the highest scored attempt
-    x_exercise_attempts.sort_by! do |attempt|
-    	attempt[:score]
+    x_exercise_attempts.sort! do |attempt1, attempt2|
+    	attempt2[:score] <=> attempt1[:score]
     end
-    y_exercise_attempts.sort_by! do |attempt|
-    	attempt[:score]
+    y_exercise_attempts.sort! do |attempt1, attempt2|
+    	attempt2[:score] <=> attempt1[:score]
     end
     x_exercise = x_exercise_attempts.first
     y_exercise = y_exercise_attempts.first
@@ -31,24 +39,36 @@ class ChartsController < ApplicationController
     exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
   
     #find all users who have both selected movements 
-    @users = User.exercises(exercise_id: @chart.x_coordinate_exercise_id).exists? && User.exercises(exercise_id: @chart.y_coordinate_exercise_id).exists?
+    @users = User.all
+    @global_users = []
+    @users.each do |user|
+        if user.exercises.include?(Exercise.find_by(id: @chart.x_coordinate_exercise_id)) && user.exercises.include?(Exercise.find_by(id: @chart.y_coordinate_exercise_id))
+          @global_users << user
+        end
+      
+    end
+
+   
+    
+    
     
   
     global_exercises = []
 
-    @users.each do |user|
-      attempts = user.attempts.all
-      x_exercise_attempts << @attempts.find_by(exercise_id: @chart.x_coordinate_exercise_id)
-      y_exercise_attempts << @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
-      x_exercise_attempts.sort_by! do |attempt|
-      attempt[:score]
-      end
-      y_exercise_attempts.sort_by! do |attempt|
-      attempt[:score]
-      end
+
+
+    @global_users.each do |user|
+      @attempts = user.attempts
+      
+       x_exercise_attempts.sort! do |attempt1, attempt2|
+      attempt2[:score] <=> attempt1[:score]
+    end
+    y_exercise_attempts.sort! do |attempt1, attempt2|
+      attempt2[:score] <=> attempt1[:score]
+    end
       x_exercise = x_exercise_attempts.first
       y_exercise = y_exercise_attempts.first
-      exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
+      global_exercises << {x: x_exercise.score, y: y_exercise.score}
     end
 
 
@@ -89,15 +109,6 @@ class ChartsController < ApplicationController
             "toolTipPadding": "5"
             },
             data:  exercises
-        #     	{
-    				# :label => x_exercise.exercise.name,
-   				 #    :value => x_exercise.score,
-        #         },
-        #         {
-        #             :label => y_exercise.exercise.name,
-        #             :value => y_exercise.score,
-        #         }
-            
         }
     })
 
@@ -114,9 +125,8 @@ class ChartsController < ApplicationController
         "subcaption": "Harry's SuperMart - Last Week",
         "yaxisname": "#{y_exercise.exercise.name}",
         "xaxisname": "#{x_exercise.exercise.name}",
-        "xaxismaxvalue": "1000",
-        "xaxisminvalue": "100",
-        "yaxismaxvalue": "1000",
+        "xaxismaxvalue": "1100",
+        "yaxismaxvalue": "1100",
         "xnumbersuffix": "pounds",
         "ynumbersuffix": " pounds",
         "showcanvasborder": "1",
@@ -209,16 +219,13 @@ class ChartsController < ApplicationController
             "anchorsides": "4",
             "anchorradius": "4",
             "anchorbgcolor": "#f8bd19",
-            "anchorbordercolor": "#f8bd19",
-            "data": [
-                {
-                    "id": "Mob_1",
-                    "y": "335",
-                    "x": "156"
-                }
+            "anchorbordercolor": "#f8bd19"
+        },
+            data: global_exercises
+               
             ]
-        }
-    ]
+        
+    
   }
   })
 end

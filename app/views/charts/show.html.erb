@@ -8,3 +8,10 @@
 
 <div id="scatter-container"></div>
 <%= @scatter_chart.render() %>
+
+
+<% @global_users.each do |user| %>
+	<%= user.id %>
+	<%end %>
+
+
