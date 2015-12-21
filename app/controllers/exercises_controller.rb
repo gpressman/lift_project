@@ -13,7 +13,7 @@ class ExercisesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @exercise = @user.exercises.find(params[:id])
-    @attempts = @exercise.attempts.all
+    @attempts = @exercise.attempts.where(user_id: current_user.id)
   end
 
   # GET /exercises/new
