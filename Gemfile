@@ -30,7 +30,7 @@ gem 'fusioncharts-rails'
 
 gem 'groupdate'
 
-
+gem 'pry-rails'
 #to make charts and graphs
 gem 'morrisjs-rails'
 gem 'raphael-rails'

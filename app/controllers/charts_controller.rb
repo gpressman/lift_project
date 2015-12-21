@@ -19,8 +19,7 @@ class ChartsController < ApplicationController
       end
     end
         
-    # @x_exercise_attempts = @attempts.where(exercise_id: @chart.x_coordinate_exercise_id)
-    # @y_exercise_attempts = @attempts.find_by(exercise_id: @chart.y_coordinate_exercise_id)
+
     
     #finds the highest scored attempt
     x_exercise_attempts.sort! do |attempt1, attempt2|
@@ -42,6 +41,7 @@ class ChartsController < ApplicationController
     @users = User.all
     @global_users = []
     @users.each do |user|
+      unless user.id == current_user.id  
         if user.exercises.include?(Exercise.find_by(id: @chart.x_coordinate_exercise_id)) && user.exercises.include?(Exercise.find_by(id: @chart.y_coordinate_exercise_id))
           @global_users << user
         end
@@ -59,27 +59,32 @@ class ChartsController < ApplicationController
       
 
     @global_users.each do |user|
-      all_x = Array.new
-      all_y = Array.new
+      all_x = []
+      all_y = []
       attempts = user.attempts.all
-       attempts.each do |attempt|
-      if attempt.exercise_id == @chart.x_coordinate_exercise_id
-        all_x << attempt
-      elsif attempt.exercise_id == @chart.y_coordinate_exercise_id
-        all_y<< attempt
+      attempts.each do |attempt|
+        
+        if attempt.exercise_id == @chart.x_coordinate_exercise_id
+          all_x << attempt
+        elsif attempt.exercise_id == @chart.y_coordinate_exercise_id
+          all_y << attempt
+        end
       end
-    end
-      all_x.sort! do |attempt1, attempt2|
+      
+        x = all_x.sort do |attempt1, attempt2|
         attempt2[:score] <=> attempt1[:score]
       end
-      all_y.sort! do |attempt1, attempt2|
+      y = all_y.sort do |attempt1, attempt2|
         attempt2[:score] <=> attempt1[:score]
       end
-      xercise = all_x.first
-      yercise = all_y.first
-       global_exercises << {x: xercise, y: yercise}
+      xercise = x.first
+      yercise = y.first
+      
+       global_exercises << {y: yercise.score, x: xercise.score}
+       
+      
     end
-
+ 
 
 
 
