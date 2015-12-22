@@ -41,9 +41,11 @@ class ChartsController < ApplicationController
     @users = User.all
     @global_users = []
     @users.each do |user|
-      unless user.id == current_user.id  
-        if user.exercises.include?(Exercise.find_by(id: @chart.x_coordinate_exercise_id)) && user.exercises.include?(Exercise.find_by(id: @chart.y_coordinate_exercise_id))
-          @global_users << user
+      if user.exercises.find_by(id: @chart.x_coordinate_exercise_id).attempts.length > 0 || user.exercises.find_by(id: @chart.y_coordinate_exercise_id).attempts.length > 0
+        unless user.id == current_user.id  
+          if user.exercises.include?(Exercise.find_by(id: @chart.x_coordinate_exercise_id)) && user.exercises.include?(Exercise.find_by(id: @chart.y_coordinate_exercise_id))
+            @global_users << user
+          end
         end
       end
     end
@@ -63,9 +65,6 @@ class ChartsController < ApplicationController
       all_y = []
       attempts = user.attempts.all
       attempts.each do |attempt|
-        if attempt.score == nil
-          attempt.score = 0
-        end
         if attempt.exercise_id == @chart.x_coordinate_exercise_id
           all_x << attempt
         elsif attempt.exercise_id == @chart.y_coordinate_exercise_id
