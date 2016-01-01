@@ -30,6 +30,9 @@ gem 'fusioncharts-rails'
 
 gem 'groupdate'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
+
 gem 'pry-rails'
 #to make charts and graphs
 gem 'morrisjs-rails'

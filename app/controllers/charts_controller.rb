@@ -28,8 +28,18 @@ class ChartsController < ApplicationController
     y_exercise_attempts.sort! do |attempt1, attempt2|
     	attempt2[:score] <=> attempt1[:score]
     end
-    x_exercise = x_exercise_attempts.first
-    y_exercise = y_exercise_attempts.first
+
+    if x_exercise_attempts.length == 0
+      x_exercise = 0
+    else
+      x_exercise = x_exercise_attempts.first
+    end
+    
+    if y_exercise_attempts.length == 0
+      y_exercise = 0
+    else
+      y_exercise = y_exercise_attempts.first
+    end
 
    
 
