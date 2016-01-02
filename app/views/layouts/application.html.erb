@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LiftProject</title>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <head>
+    <title>LiftProject</title>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   
 
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<% if current_user.present? %>
-<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
-<% else %>
-
-
-<p><%= link_to("sign in", new_user_session_path) %></p>
-<p><%= link_to("create account", new_user_registration_path) %></p>
-
-<% end %>
-
-<%= yield %>
-
-</body>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  	<div class="row nav">
+  	  <div class="col-xs-9">
+  	  	<%= link_to "LiftProject", root_path %>
+  	  </div>
+      <% if current_user.present? %>
+        <p><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
+      <% else %>
+        <ul style="list-style-type:none">
+          <li>
+          	<%= link_to("Sign In", new_user_session_path) %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <%= yield %>
+  </body>
 </html>

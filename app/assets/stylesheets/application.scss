@@ -15,5 +15,20 @@
  */
 
 
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+	background-color: grey;
+	position: relative;
+}
+
+.nav {
+  width: 110%;
+  background-color: #645E82;
+  font-size: 1.4em;
+  top: 0;
+  opacity: .85;  
+  position:fixed;
+  z-index: 9999
+}
