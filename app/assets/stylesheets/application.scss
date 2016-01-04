@@ -17,18 +17,24 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
-	background-color: grey;
+	background-color: black;
 	position: relative;
 }
 
 .nav {
   width: 110%;
-  background-color: #645E82;
-  font-size: 1.4em;
+  font-size: 1.1em;
   top: 0;
   opacity: .85;  
   position:fixed;
   z-index: 9999
+}
+
+.left-link {
+  position: absolute;
+  left: 50px;
 }
