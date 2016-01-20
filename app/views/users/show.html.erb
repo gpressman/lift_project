@@ -1,2 +1,6 @@
 <%= @user.email %>
 <%= @user.current_weight %>
+
+<div id="chart-container"></div>
+  <%= @weights_chart.render() %>
+
