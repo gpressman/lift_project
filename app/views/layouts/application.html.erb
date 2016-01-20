@@ -14,7 +14,7 @@
   <body>
   	<div class="row nav">
   	  <div class="col-xs-8">
-  	  	<span class="left-links">
+  	  	<span class="left-links top-links">
   	  	  <%= link_to root_path do %>
             <i class="fa fa-fort-awesome"></i> Lift-Project
           <% end %>
@@ -22,10 +22,12 @@
          </span>
   	  </div>
       <% if current_user.present? %>
-        <p><%= link_to("#{current_user.email}", user_show_path) %></p>
-        <p><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
+        <p class="top-links">
+          <%= link_to("#{current_user.email}", user_show_path) %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </p>
       <% else %>
-        <p>
+        <p class="top-links">
           <%= link_to("Sign In", new_user_session_path) %>
           <%= link_to("Create account", new_user_registration_path) %>
         </p>

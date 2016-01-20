@@ -42,11 +42,10 @@ class ChartsController < ApplicationController
     end
 
    
-
     #puts the best attempts exercise and score in an array.
     exercises = []
     exercises << {label: x_exercise.exercise.name, value: x_exercise.score}<<{ label: y_exercise.exercise.name, value: y_exercise.score}
-  
+   
     #find all users who have both selected movements 
     @users = User.all
     @global_users = []
@@ -90,7 +89,7 @@ class ChartsController < ApplicationController
       end
       xercise = x.first
       yercise = y.first
-      
+     
        global_exercises << {y: yercise.score, x: xercise.score}
        
       
