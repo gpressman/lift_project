@@ -22,17 +22,14 @@
 
 body {
 	background-color: black;
-	position: relative;
 }
 
 .nav {
-  width: 110%;
+  width: 100%;
   font-size: 1.5em;
-  top: 12px;
   opacity: .85;  
-  
-  z-index: 9999;
   border-bottom: solid 3px white;
+  margin-bottom: 5px
   
 }
 
