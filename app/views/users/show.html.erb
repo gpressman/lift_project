@@ -1,6 +1,14 @@
 <%= @user.email %>
 <%= @user.current_weight %>
 
-<div id="chart-container"></div>
-  <%= @weights_chart.render() %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+    </div>
+    <div class="col-xs-6">
+      <div id="chart-container">
+        <%= @weights_chart.render() %>
+      </div>
+    </div>
+  </div>
+</div>

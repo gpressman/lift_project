@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-  	
+  @exercises = Exercise.all
   @user = User.find(params[:id])  
 
 @weights = @user.weights

@@ -146,7 +146,6 @@ class ChartsController < ApplicationController
     "chart": {
         "theme": "fint",
         "caption": "Global Comparison of #{x_exercise.exercise.name} and #{y_exercise.exercise.name}",
-        "subcaption": "Harry's SuperMart - Last Week",
         "yaxisname": "#{y_exercise.exercise.name}",
         "xaxisname": "#{x_exercise.exercise.name}",
         "xaxismaxvalue": "1100",
@@ -161,65 +160,7 @@ class ChartsController < ApplicationController
         "formAction": "#",
         "submitdataasxml": "1"
     },
-    # "categories": [
-    #     {
-    #         "verticallinecolor": "666666",
-    #         "verticallinethickness": "1",
-    #         "alpha": "40",
-    #         "category": [
-    #             {
-    #                 "label": "$100",
-    #                 "x": "100",
-    #                 "showverticalline": "0"
-    #             },
-    #             {
-    #                 "label": "$200",
-    #                 "x": "200",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$300",
-    #                 "x": "300",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$400",
-    #                 "x": "400",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$500",
-    #                 "x": "500",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$600",
-    #                 "x": "600",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$700",
-    #                 "x": "700",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$800",
-    #                 "x": "800",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$900",
-    #                 "x": "900",
-    #                 "showverticalline": "1"
-    #             },
-    #             {
-    #                 "label": "$1000",
-    #                 "x": "1000",
-    #                 "showverticalline": "0"
-    #             }
-    #         ]
-    #     }
-    # ],
+    
     "dataset": [
         {
             "drawline": "0",
@@ -238,7 +179,7 @@ class ChartsController < ApplicationController
             ]
         },
         {
-            "seriesname": "Cell Phones",
+            "seriesname": "Other users",
             "color": "#f8bd19",
             "anchorsides": "4",
             "anchorradius": "4",
