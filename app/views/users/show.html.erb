@@ -1,9 +1,14 @@
 <%= @user.email %>
 <%= @user.current_weight %>
 
-<div class="container">
+
   <div class="row">
     <div class="col-xs-6">
+      <% @exercises.each do |exercise| %>
+        <ul>
+          <li><%= link_to("#{exercise.name}", user_exercise_path(current_user, exercise) )%></li>
+        </ul> 
+      <% end %>
     </div>
     <div class="col-xs-6">
       <div id="chart-container">
@@ -11,4 +16,4 @@
       </div>
     </div>
   </div>
-</div>
+
