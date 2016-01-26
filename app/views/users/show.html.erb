@@ -1,5 +1,4 @@
 
-
   <div class="row">
     <div class="col-xs-6">
       <% @exercises.each do |exercise| %>
@@ -9,10 +8,11 @@
       <% end %>
     </div>
     <div class="col-xs-6">
-      <%= render "weights/new_weight"%>
+     <p>Current weight:<%= @user.current_weight %></p>
       <div id="chart-container">
         <%= @weights_chart.render() %>
       </div>
+      <%= render "weights/new_weight"%>
     </div>
   </div>
 

@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   @exercises = Exercise.all
   @user = User.find(params[:id])  
   @weight = @user.weights.build
-@weights = @user.weights
-weights = @weights.select(:weight, :created_at)
-weights_over_time = []
+  @weights = @user.weights
+  weights = @weights.select(:weight, :created_at)
+  weights_over_time = []
 
 
 weights.each do |weight|
