@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LiftProject</title>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <title>LiftProject</title>  
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-  
-
     <%= csrf_meta_tags %>
   </head>
   <body>
   	<div class="row nav">
   	  <div class="col-xs-8">
-  	  	<span class="left-links">
-  	  	<span class="top-link"><%= link_to root_path do %>
+  	  	<div class="left-links">
+  	  	<span class="top-links"><%= link_to root_path do %>
             <i class="fa fa-fort-awesome"></i> Lift-Project
           <% end %>
         </span>
-           <span class="top-link"><%= link_to("About", about_path) %></span>
-         </span>
+           <span class="top-links"><%= link_to("About", about_path) %></span>
+         </div>
   	  </div>
       <% if current_user.present? %>
         <span class="right-links">
-          <span class="top-link"><%= link_to("#{current_user.email}", user_path(current_user)) %></span>
-          <span class="top-link"> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
-        </p>
+          <span class="top-links"><%= link_to("#{current_user.email}", user_path(current_user)) %></span>
+          <span class="top-links"> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
       <% else %>
-        <p>
-          <span class="top-link"><%= link_to("Sign In", new_user_session_path) %></span>
-          <span class="top-link"> <%= link_to("Create account", new_user_registration_path) %></span>
-        </p>
-        </ul>
+          <span class="top-links"><%= link_to("Sign In", new_user_session_path) %></span>
+          <span class="top-links"> <%= link_to("Create account", new_user_registration_path) %></span>
       <% end %>
     </div>
   <%= yield %>
