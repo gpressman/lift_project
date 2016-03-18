@@ -1,3 +1,21 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.image {
+  position:relative;
+  width: 100%;
+}
+
+.intro {
+  position:absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Arial black";
+  font-size: 3em;
+  z-index: 9999
+
+}
