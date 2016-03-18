@@ -30,16 +30,20 @@ body {
   opacity: .85;  
   position:absolute;
   z-index: 9999;
+
   
   margin-top: 20px
   
 }
-
+.white {
+	 color: white;
+}
 
 .left-links {
   position: absolute;
   left: 25px;
   font-size: 2em;
+   
 }
 
 .top-links {

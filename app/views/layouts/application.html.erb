@@ -11,7 +11,7 @@
   	<div class="row nav">
   	  <div class="col-xs-8">
   	  	<div class="left-links">
-  	  	<span class="top-links"><%= link_to root_path do %>
+  	  	<span class="top-links"><%= link_to root_path, class:"white" do %>
             <i class="fa fa-fort-awesome"></i> Lift-Project
           <% end %>
         </span>
@@ -19,13 +19,13 @@
          </div>
   	  </div>
       <span class="right-links">
-         <span class="top-links"><%= link_to("About", about_path) %></span>
+         <span class="top-links"><%= link_to("About", about_path, class:"white") %></span>
       <% if current_user.present? %>
-          <span class="top-links"><%= link_to("#{current_user.email}", user_path(current_user)) %></span>
-          <span class="top-links"> <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
+          <span class="top-links"><%= link_to("#{current_user.email}", user_path(current_user), class:"white") %></span>
+          <span class="top-links"> <%= link_to('Logout', destroy_user_session_path, :method => :delete, class:"white") %></span>
       <% else %>
-          <span class="top-links"><%= link_to("Sign In", new_user_session_path) %></span>
-          <span class="top-links"> <%= link_to("Create account", new_user_registration_path) %></span>
+          <span class="top-links"><%= link_to("Sign In", new_user_session_path, class:"white") %></span>
+          <span class="top-links"> <%= link_to("Create account", new_user_registration_path, class:"white") %></span>
       <% end %>
     </div>
   <%= yield %>
