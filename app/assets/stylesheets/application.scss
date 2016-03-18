@@ -36,7 +36,14 @@ body {
   
 }
 .white {
-	 color: white;
+  color: white;
+  text-decoration: none
+}
+
+.white:hover {
+  text-decoration: none;
+  color: red;
+
 }
 
 .left-links {
