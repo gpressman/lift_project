@@ -1,7 +1,7 @@
 class Example
 	
   class Fusioncharts::Chart
-  	"data":{
+  	self.chart{
   	    type: 'area2d',
   	    renderAt: 'chart-container',
   	    width: '400',

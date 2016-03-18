@@ -44,7 +44,7 @@ weights_over_time.push({
 })
 end
 @chart = Fusioncharts::Chart.new({
-    type: 'area2d',
+    type: 'line',
     renderAt: 'chart-container',
     width: '400',
     height: '300',
