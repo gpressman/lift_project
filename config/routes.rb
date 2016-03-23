@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'example' => 'examples#fc_json'
   get '/users/:user_id/example' => 'weights#fc_json'
   get '/about' => 'about#home', as: 'about'
-
+  
   devise_for :users, :path => 'accounts'
     resources :users, only: [:show, :index] do 
       resources :weights, only: [:create, :new, :index]

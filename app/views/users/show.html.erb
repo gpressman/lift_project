@@ -6,6 +6,7 @@
           <li><%= link_to("#{exercise.name}", user_exercise_path(current_user, exercise) )%></li>
         </ul> 
       <% end %>
+      <%= render 'exercises/form' %>
     </div>
     <div class="col-xs-6">
      <p>Current weight:<%= @user.current_weight %></p>
