@@ -12,7 +12,11 @@ class ExercisesController < ApplicationController
   # GET /exercises/1
   # GET /exercises/1.json
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
+    @exercises = @user.exercises
+    @exercise = Exercise.find(params[:id])
+     @a = []
+    @a << @exercise
     @attempt = @user.attempts.new
     @attempts = @exercise.attempts.where(user_id: current_user.id)   
     attempts = @attempts.select(:score, :created_at)

@@ -15,6 +15,14 @@
     <%= f.label :score %><br>
     <%= f.text_field :score %>
   </div>
+  <div class="field">
+    <%= f.label :exercise %>
+    <%= f.select (:exercise_id) do %>
+      <% @a.each do |exercise| %>
+      <%= content_tag(:option, exercise.name, value: exercise.id) %>
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Record attempt" %>

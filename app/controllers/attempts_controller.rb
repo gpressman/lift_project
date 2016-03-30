@@ -6,20 +6,19 @@ class AttemptsController < ApplicationController
 
   def new
   	@user = current_user
+    @exercise = Exercise.find(params[:id])
     @exercises = @user.exercises.all
   	@attempt = @user.attempts.new	
   end
 
   def create
   	@user = current_user
-    @exercise = Exercise.find(params[:exercise_id])
+    @exercises = @user.exercises.all
   	@attempt = @user.attempts.new(attempt_params)
-    @attempt.exercise_id = @exercise.id
-
   	  if @attempt.save
-  	  	redirect_to user_exercise_path(@user, @attempt.exercise_id)
+  	  	redirect_to user_exercise_path(@attempt.user_id, @attempt.exercise_id) 
   	  else
-  	  	render 'new_user_attempt'
+  	  	render 'user_exercise_path'
   	  end
   end
 
