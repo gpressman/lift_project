@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<div>
-  <strong>Stats for:</strong>
-  <%= @exercise.name %>
-  
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div>
+    <strong>Stats for:</strong>
+    <%= @exercise.name %>  
+  </div>
+  <div id="chart-container"></div>
+    <%= @exercise_chart.render() %>
+  <%= render 'attempts/new' %>
+  <%= link_to 'Back', user_path(current_user) %>
 </div>
-
-<div id="chart-container"></div>
-  <%= @exercise_chart.render() %>
-
-<%= render 'attempts/new' %>
-
-<%= link_to 'Back', user_exercises_path %>
