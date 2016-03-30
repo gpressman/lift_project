@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  layout "alternate", :only => :show
 
   # GET /exercises
   # GET /exercises.json
@@ -12,7 +13,6 @@ class ExercisesController < ApplicationController
   # GET /exercises/1.json
   def show
     @user = User.find(params[:user_id])
-    @exercise = @user.exercises.find(params[:id])
     @attempts = @exercise.attempts.where(user_id: current_user.id)   
     attempts = @attempts.select(:score, :created_at)
     scores_over_time = []
@@ -127,4 +127,8 @@ class ExercisesController < ApplicationController
     def exercise_params
       params.require(:exercise).permit(:name)
     end
+
+     
 end
+
+

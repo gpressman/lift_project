@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <strong>Name:</strong>
+  <strong>Stats for:</strong>
   <%= @exercise.name %>
-  <% @attempts.each do |attempt| %>
-    <%= attempt.score %>
-    <% end %>
+  
 </div>
 
 <div id="chart-container"></div>

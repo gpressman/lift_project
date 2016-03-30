@@ -1,6 +1,7 @@
 <body style="background-color: black">
 <div class="container">
   <div class="row exercises">
+    <h2 class="white">Exercises</h2>
     <div class="col-xs-6">
       <% @exercises.each do |exercise| %>
         <ul>
@@ -10,7 +11,7 @@
       <%= render 'exercises/form' %>
     </div>
     <div class="col-xs-6">
-     <p>Current weight:<%= @user.current_weight %></p>
+     <p class="white">Current weight:<%= @user.current_weight %></p>
       <div id="chart-container">
         <%= @weights_chart.render() %>
       </div>
