@@ -13,6 +13,7 @@ class ExercisesController < ApplicationController
   # GET /exercises/1.json
   def show
     @user = User.find(params[:user_id])
+    @attempt = @user.attempts.new
     @attempts = @exercise.attempts.where(user_id: current_user.id)   
     attempts = @attempts.select(:score, :created_at)
     scores_over_time = []
@@ -23,7 +24,7 @@ class ExercisesController < ApplicationController
       })
     end
     @exercise_chart = Fusioncharts::Chart.new({
-    type: 'area2d',
+    type: 'line',
     renderAt: 'chart-container',
     width: '400',
     height: '300',

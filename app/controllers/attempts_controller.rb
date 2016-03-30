@@ -12,7 +12,9 @@ class AttemptsController < ApplicationController
 
   def create
   	@user = current_user
+    @exercise = Exercise.find(params[:exercise_id])
   	@attempt = @user.attempts.new(attempt_params)
+    @attempt.exercise_id = @exercise.id
 
   	  if @attempt.save
   	  	redirect_to user_exercise_path(@user, @attempt.exercise_id)
