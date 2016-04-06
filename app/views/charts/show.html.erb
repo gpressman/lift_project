@@ -1,18 +1,15 @@
-<p> User: 
-  <%= @user.id %> 
-</p>
+<%= @chart.name %> <%= link_to "back", new_user_chart_path(current_user) %>
+<div class="row">
+  <div class="col-xs-4">
+    <div id="column-container"></div>
+    <%= @column_chart.render() %>
+  </div>
+  <div class="col-xs-4">
+    <div id="scatter-container"></div>
+    <%= @scatter_chart.render() %>
+  </div>
+</div>
 
-
-<div id="column-container"></div>
-<%= @column_chart.render() %>
-
-<div id="scatter-container"></div>
-<%= @scatter_chart.render() %>
-
-
-<% @global_users.each do |user| %>
-	<%= user.id %>
-	<%end %>
 
 
 	

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   def show
 
-  @exercises = Exercise.all
+  
   @user = User.find(params[:id])  
+  @exercises = @user.exercises.all
   @exercise = @user.exercises.build
   @weight = @user.weights.build
   @weights = @user.weights

@@ -198,9 +198,10 @@ end
   
 
   def new
-  	@user = current_user
+  	@user = User.find(params[:user_id])
   	@exercises = @user.exercises
   	@chart = @user.charts.new
+    @charts = @user.charts.all
   end
 
   def create
