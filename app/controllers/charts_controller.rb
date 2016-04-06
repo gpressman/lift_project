@@ -1,4 +1,5 @@
 class ChartsController < ApplicationController
+  layout "alternate", :only => [:show, :new]
   
   def index
   end
