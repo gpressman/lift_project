@@ -9,6 +9,7 @@
         </ul> 
       <% end %>
       <%= render 'exercises/form' %>
+      <%= link_to "New Chart", new_user_chart_path(current_user) %>
     </div>
     <div class="col-xs-6">
      <p class="white">Current weight:<%= @user.current_weight %></p>
